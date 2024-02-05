@@ -7,7 +7,7 @@
     <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/742313ea-81fd-4e6d-87bc-7f6ce1ae127d">
     <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/229d6da3-73ad-4498-bc90-49f6f1008f92">
     <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/2bd13973-1f37-497c-97a8-07d324c6de15">
-    <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/fdcd5a9e-0b06-4c14-96f9-c1b5b7438fd6">
+    <img width="1200" src="">
     <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/47386ab9-45c3-43ca-9977-32214a265c69">
  
 </p>
