@@ -1,6 +1,17 @@
 <p align="center">
 <h2 align="center">신한DS 금융 아카데미 1차 팀 프로젝트: 노량진 수산지상 중계 플랫폼 </h2>
     <h3 align="center">2023.10. ~ 2023.12 </h2>
+   </br>
+
+   <p>    ▶ 개발 목표       :Spring을 활용해 쇼핑 웹사이트를 구축 및 개발, 도매시장 배달, 예약 서비스를 개발 
+          ▶ 개발 환경        : Aws ec2, Mysql, Spring boot, jpa, intellij 
+          ▶ 인     원         : 5명
+          ▶ OS 및 DB       : Mysql, Ubuntu
+          ▶ 사용 언어       : java, javascript, html, css, jpa, thymeleaf
+          ▶ 담당 역할      :팀장 – aws DB서버 구축, 마이페이지(댓글 보기, 즐겨찾기)
+          ▶ 참여도/기여도  : 제작 총괄, 일정 관리, 역할 분담, 프로젝트 발표
+   </p>
+    
 <p>
     <img width="1200" height="400" src="https://github.com/LTaeSung/git_test/assets/121271698/0cf2bdb4-e6c4-41e8-bba8-dda75278b846">
     <img width="1200" src="https://github.com/LTaeSung/git_test/assets/121271698/32b65be6-4a93-44c8-b687-5556061fc745">
