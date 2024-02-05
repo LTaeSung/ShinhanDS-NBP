@@ -1,0 +1,52 @@
+footer {
+    background-color: #040d22;
+    position: relative;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-customer {
+    flex-basis: 30%;
+}
+.footer-company {
+    flex-basis: 40%;
+}
+
+footer h5 {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 20px 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer ul li a:hover {
+    color: white;
+}
+
+footer .site-link {
+    margin: 0;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer .site-link li {
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    margin-right: 20px;
+}

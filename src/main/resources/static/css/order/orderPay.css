@@ -1,0 +1,355 @@
+*{
+    margin: 0 auto;
+}
+.store_info{
+    margin-top: 20px;
+    border: 1px solid rgb(171, 168, 168);
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    background-color: gainsboro;
+    font-family: 'Noto Sans KR', sans-serif;
+
+}
+.order_title{
+    margin-top: 20px;
+    width: 50%;
+    text-align: left;
+}
+
+.basketdiv {
+    width: 50%;
+    border-top: 1px solid #e0e0e0;
+    float: center;
+    font-size: 0.9375em;
+    margin-bottom: 20px;
+}
+.basketdiv .row.head {
+    border-bottom: 2px solid #888;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    font-weight: 500;
+}
+.basketdiv .data {
+    border-bottom: 1px dashed #888;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    width: 100%;
+}
+.basketdiv .data .empty{
+    text-align: center;
+    padding: 12px 0;
+}
+.basketdiv .row.head .subdiv {
+    background-color: #f4f4f4;
+}
+.basketdiv .row > .subdiv {
+    display: block;
+    float: left;
+}
+.basketdiv .row> .subdiv:nth-child(1) {
+    width: 40%;
+}
+.basketdiv  .row> .subdiv:nth-child(2) {
+    width: 20%;
+}
+.basketdiv  .row> .subdiv:nth-child(3) {
+    width: 20%;
+}
+.basketdiv  .row> .subdiv:nth-child(4) {
+    width: 20%;
+}
+.grid-container{
+    position: relative;
+
+}
+img{
+    padding-left: 5rem;
+}
+span{
+    padding-left: 5rem;
+    font-size: 2rem;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.basketdiv .row > div > div {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 12px 0;
+}
+.basketdiv .row.data > div > div {
+    height: 60px;
+    line-height: 60px;
+}
+.basketdiv .data .num .updown {
+    color: #0075ff;
+    font-size: 2em;
+    letter-spacing: -5px;
+}
+.basketdiv .check {
+    width: 10%;
+}
+.basketdiv .check input[type=checkbox] {
+    transform: scale(1.5);
+}
+.basketdiv .img{
+    width: 20%;
+}
+.basketdiv .pname{
+    width: 70%;
+}
+.basketdiv2 .pname {
+    width: 80%;
+}
+.basketdiv .basketprice {
+    width: 33%;
+}
+.basketdiv .num {
+    width: 33%;
+    min-width: 105px;
+}
+.basketdiv .sum {
+    width: 34%;
+    max-width: 80px;
+    color: #0000aa;
+}
+.basketdiv .point {
+    width: 50%;
+}
+.basketdiv2 .basketprice {
+    width: 25%;
+}
+
+.basketdiv2 .num {
+    width: 25%;
+}
+
+.basketdiv2 .sum {
+    width: 25%;
+    color: #0000aa;
+}
+
+.basketdiv2 .point {
+    width: 25%;
+}
+.basketdiv .basketcmd{
+    width: 100%;
+}
+.basketdiv .data .pname {
+    text-align: center ;
+    line-height: 1.2 ;
+}
+.basketdiv .data .price, .basketdiv .data .sum, .basketdiv .data .point {
+    text-align: center;
+}
+.baseform > tbody > tr > td:first-child {
+    width: 100px;
+}
+
+.buttongroup {
+    padding: 11px 0;
+    margin: 50px 0;
+}
+.narrowbuttongroup{
+    margin: 15px 0;
+}
+.buttongroup.center {
+    text-align: center;
+}
+.buttongroup input[type=text], .buttongroup input[type=password] {
+    height: 30px;
+}
+.buttongroup button, .buttongroup a {
+    margin-right: 5px;
+}
+.buttongroup button:last-child, .buttongroup a:last-child {
+    margin-right: 0;
+}
+
+.abutton, .abutton:link, .abutton:visited, .abutton:active, input[type=button] {
+    background-color: gainsboro;
+    color: black;
+    cursor: pointer;
+    letter-spacing: -1px;
+    padding: 3px 5px;
+    margin: 2px 3px;
+    width: auto;
+    word-break: keep-all;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9375em;
+}
+
+.abutton-alt {
+    background-color: #d3e2c6;
+}
+
+.red {
+    color:#b00;
+}
+.blue {
+    color: #0075ff;
+}
+.basketrowcmd, .sumcount, .summoney{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.sumcount, .summoney{
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.buttongroup{
+    text-align: center;
+}
+.buttongroup a{
+    text-decoration: none;
+}
+.cmd a, .cmd span {
+    padding: 12px 30px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+.cmd.small a, .cmd.small span {
+    padding: 6px 20px;
+    font-size: 0.8125em;
+}
+.orderform .p_num {
+    text-align: right;
+    width: 40px;
+    font-size: 1em;
+}
+.delivery_title{
+    margin-top: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.order_table {
+    width: 100%;
+    margin: 30px auto;
+    background-color: #fff;
+    /* padding: 20px; */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+table {
+    width: 100%;
+}
+
+tr {
+    margin-bottom: 15px;
+}
+
+td {
+    padding: 8px;
+}
+#order_row {
+    font-weight: bold;
+    color: #333;
+}
+.order_row {
+    font-weight: bold;
+    color: #333;
+}
+
+#delivery_request {
+    border: 1px solid #f80101; /* 원하는 스타일의 테두리 속성을 추가합니다. */
+    padding: 5px; /* 텍스트 영역과 테두리 사이의 여백을 설정합니다. */
+}
+
+/* 또는 필요에 따라 배경색 등을 추가로 설정할 수 있습니다. */
+
+
+.delivery_info{
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0;
+}
+#delivery_name{
+    width: 100%;
+    border: 0;
+    border-bottom: 1px dashed #888;
+    height: 30px;
+    color: gray;
+}
+#delivery_phone{
+    width: 100%;
+    border: 0;
+    border-bottom: 1px dashed #888;
+    height: 30px;
+    color: gray;
+}
+#postcode {
+    width: 60%;
+    border: 0;
+    border-bottom: 1px dashed #888;
+    height: 30px;
+    color:black;
+}
+input[type="button"] {
+    padding: 10px;
+    background-color:gainsboro;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#address{
+    width: 100%;
+    border: 0;
+    border-bottom: 1px dashed #888;
+    height: 30px;
+    color:black;
+}
+#detailAddress, #extraAddress{
+    width: 100%;
+    border: 0;
+    border-bottom: 1px dashed #888;
+    height: 30px;
+    color:black;
+}
+#delivery_request{
+    border: 0;
+    text-align: left;
+}
+input[type="text"],
+textarea {
+    resize: vertical;
+    width: 50%;
+}
+.payment_info{
+    margin-top: 20px;
+    border-bottom: 1px solid rgb(171, 168, 168);
+    width: 50%;
+}
+.check{
+    margin: 0 auto;
+    text-align: center;
+}
+#iamportPayment, #btn_return{
+    margin: 0 auto;
+    width: 25%;
+    height: 50px;
+    color: black;
+    font-size: 20px;
+    background-color: gainsboro;
+    margin-bottom: 50px;
+}
+#iamportPayment:hover, #btn_return:hover {
+    background-color: lightgray;
+}

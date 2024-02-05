@@ -1,0 +1,91 @@
+뉴<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="../../css/menu/Menu.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="container">
+    <aside class="sidebar">
+        <p>사장님 페이지</p>
+        <h5> > 가게 정보</h5>
+        <ul class="list-unstyled">
+            <li><a href="menu_registration.html">가게 등록</a></li>
+            <li><a href="info_registration.html">가게 수정</a></li>
+            <li><a href="#">리뷰 관리</a></li>
+        </ul>
+        <h5> > 매출 관리</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">오늘의 매출</a></li>
+            <li><a href="#">월 매출</a></li>
+            <li><a href="#">년 매출</a></li>
+        </ul>
+        <h5> > 예약 관리</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">이번 주 예약</a></li>
+            <li><a href="#">지난 예약</a></li>
+        </ul>
+        <h5> > 공지 사항</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">서비스 소개</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+        </ul>
+    </aside>
+    <section class="mainpage" style="overflow-y: scroll;">
+        <form action="/menu/new" method="post">
+            <fieldset>
+                <div>
+                    <br>
+                    <p><img src="img/check.png" width="20px">   가게</p></div><br>
+                <div class="store_title">
+                    가게를 등록하는 페이지 입니다.
+                </div><br>
+                <div class="store_sub">
+                    <button id="btn_store">가게조회</button>
+                    <button id="btn_store">가게등록</button>
+                    <button id="btn_store">가게수정</button>
+                </div><br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">가격</th>
+                        <th scope="col">인기</th>
+                        <th scope="col">설명</th>
+                        <th scope="col">사진</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#menuList}}
+                        <tr>
+                            <td><a href="/menu/{{id}}">{{id}}</a></td>
+                            <th>{{popular}}</th>
+                            <td>{{content}}</td>
+                            <td>{{photo}}</td>
+                        </tr>
+                    {{/menuList}}
+                    </tbody>
+                </table><br><br>
+                <div class="image"><br>
+                    <h2> > 가게사진</h2><br>
+                    <div><input type="file" onchange="readURL(this);"><br>
+                        <img id="preview" width="300px" /><br><br><br></div>
+
+                    <!-- <button id="btn_addmenu">메뉴 추가하기</button><br><br> -->
+                </div><br><br><br>
+                <div>
+                    <div class="finish_space"><br>
+                        <input type="submit" id="btn_submit" value="등록">메뉴추가
+                        <input type="button" id="btn_cancel" value="취소">취소
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+</main>
+    </body>
+</html>

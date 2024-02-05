@@ -1,0 +1,45 @@
+<header>
+    <div></div>
+    <div class="main-logo" >
+        NBP<span class="underscore">_</span>
+    </div>
+    <div class="profile-section">
+        <div class="user"><img width="60px" src="/img/user-circle.png" alt=""/></div>
+        <div class="profile-dropdown">
+            <div class="nav-bar-profile">
+                {{#loggedIn}}
+                    <div><span> {{#loginName}}{{loginName}}{{/loginName}} 님 </span></div>
+
+                    <div>
+                        <a href="/member/logout">로그아웃</a>
+                    </div>
+                {{/loggedIn}}
+                {{^loggedIn}}
+                    <div> <span> 비회원 님 </span></div>
+                    <div>
+                        <a href="/member/login">로그인</a>
+                    </div>
+                {{/loggedIn}}
+
+            </div>
+
+            <a href="#">주문내역</a>
+            <a href="../mypage/bookmark">북마크</a>
+            <a href="../board/">내가 단 댓글</a>
+            <a href="#">포인트 충전</a>
+            <a href="#">포인트 충전 내역</a>
+            <a href="/member/update">내 정보 수정</a>
+            <a href="#">설정</a>
+
+        </div>
+    </div>
+</header>
+
+
+<!-- 알람 메세지-->
+{{#msg}}
+    <div class="alert alert-primary alert-dismissible">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/msg}}

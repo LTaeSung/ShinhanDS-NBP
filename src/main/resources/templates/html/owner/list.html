@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>점주 회원 목록</h2>
+<table>
+  <tr>
+    <th>id</th>
+    <th>ownerEmail</th>
+    <th>ownerPassword</th>
+    <th>ownerName</th>
+    <th>ownerPhone</th>
+    <th>ownerNickname</th>
+    <th>ownerAddress</th>
+    <th>상세조회</th>
+    <th>삭제</th>
+  </tr>
+  <tr th:each="owner: ${ownerList}">
+    <td th:text="${owner.id}"></td>
+    <td th:text="${owner.ownerEmail}"></td>
+    <td th:text="${owner.ownerPassword}"></td>
+    <td th:text="${owner.ownerName}"></td>
+    <td th:text="${owner.ownerPhone}"></td>
+    <td th:text="${owner.ownerNickname}"></td>
+    <td th:text="${owner.ownerAddress}"></td>
+    <td>
+      <!-- query string 방식 : /member?id=1
+          rest api 방식(주소만으로 어떤 자원인지 판별하자 ~) : /member/1 이런 주소 체계
+          || 빼면 주소값이 제대로 안나온단다 -->
+      <a th:href="@{|/owner/${owner.id}|}">조회</a>
+    </td>
+    <td>
+      <a th:href="@{|/owner/delete/${owner.id}|}">삭제</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="../../css/customer/customer.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+        }
+        body {
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            flex-basis: 20%;
+            color: #fff;
+            padding-top: 20px;
+            padding: 1rem;
+            background-color: #333;
+        }
+        p{
+            font-size: 30px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .mainpage {
+            flex-basis: 80%;
+            border: 1px solid darkgreen;
+            padding: 1rem;
+
+        }
+        .menu_title{
+            border-bottom: 1px solid black;
+            width: 1000px;
+            margin-left: 20px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 30px;
+        }
+        .menu_sub{
+            background-color: orange;
+            width: 1000px;
+            height: 30px;
+            margin-left: 20px;
+            border-radius: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        #btn_menu{
+            width: 100px;
+            height: 30px;
+            font-size: large;
+            background-color: orange;
+            border-radius: 10px;
+            margin-left: 50px;
+
+        }
+        .menu1{
+            /* border: 1px solid black; */
+            margin-left: 20px;
+            border-radius: 10px;
+            width: 1000px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 30px;
+        }
+        .image h2{
+            text-align:left;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 30px;
+        }
+        #menu1_name{
+            background-color: oldlace;
+            width: 250px;
+            height: 25px;
+            margin-left: 10px;
+            font-size: large;
+        }
+        #menu1_price{
+            background-color: oldlace;
+            width: 250px;
+            height: 25px;
+            margin-left: 10px;
+            font-size: large;
+        }
+        #menu1_context{
+            background-color: oldlace;
+            margin-left: 10px;
+            font-size: large;
+        }
+        .image{
+            /* border: 1px solid black;
+            border-radius: 10px; */
+            margin-left: 20px;
+            border-bottom: 1px solid black;
+            width: 1000px;
+            font-family: 'Noto Sans KR', sans-serif;
+            /* font-size: 30px; */
+        }
+        #btn_addmenu{
+            width: 300px;
+            height: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: large;
+            background-color: orange;
+            border-radius: 10px;
+        }
+        h5 {
+            font-weight: 700;
+            color: #fff;
+            margin: 20px 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        ul li a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 20px;
+        }
+
+        ul li a:hover {
+            color: white;
+        }
+        #btn_submit, #btn_cancel{
+            width: 500px;
+            height: 40px;
+            font-size: large;
+            background-color: orange;
+            border-radius: 10px;
+        }
+        .finish_space{
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<main class="container">
+    <aside class="sidebar">
+        <p>사장님 페이지</p>
+        <h5> > 가게 정보</h5>
+        <ul class="list-unstyled">
+            <li><a href="menu_registration.html">가게 등록</a></li>
+            <li><a href="info_registration.html">가게 수정</a></li>
+            <li><a href="#">리뷰 관리</a></li>
+        </ul>
+        <h5> > 매출 관리</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">오늘의 매출</a></li>
+            <li><a href="#">월 매출</a></li>
+            <li><a href="#">년 매출</a></li>
+        </ul>
+        <h5> > 예약 관리</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">이번 주 예약</a></li>
+            <li><a href="#">지난 예약</a></li>
+        </ul>
+        <h5> > 공지 사항</h5>
+        <ul class="list-unstyled">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">서비스 소개</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+        </ul>
+    </aside>
+    {{#menu}}
+        <form action="/menu/{{id}}/put" class="container" method="post">
+            <input type="hidden" name="id" value="{{id}}"/>
+            <div class="mb-3">
+                <label class="form-label">가격</label>
+                <input type="text" class="form-control" name="price" value="{{price}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">인기</label>
+                <input type="text" class="form-control" name="popular" value="{{popular}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">내용</label>
+                <textarea name="content" id="" cols="30" rows="10" class="form-control">{{content}}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">등록</button>
+            <a href="/menu/{{id}}" class="btn btn-primary">취소</a>
+        </form>
+    {{/menu}}
+</main>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            document.getElementById('preview').src = "";
+        }
+    }
+</script>
+</body>
+</html>

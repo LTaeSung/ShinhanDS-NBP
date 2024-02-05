@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/review/detail.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/review/page.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<form action="/board/update" method="post" name="updateForm" enctype="multipart/form-data">
+<table>
+    <input type="hidden" name="id" th:value="${boardUpdate.id}">
+    <tr>
+        <td>글쓴이</td>
+        <td><input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly></td>
+        <input type="text" name="boardPass" id="boardPass" th:value="${session.loginName}" hidden="on">
+    </tr>
+    <tr>
+        <td>제목</td>
+        <td><input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"></td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td><textarea name="boardContents" cols="60" rows="30" th:text="${boardUpdate.boardContents}"></textarea></td>
+    </tr>
+    <tr>
+        <td>사진</td>
+        <td><input type="file" name="boardFile" ></td>
+    </tr>
+</table>
+    <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
+    <input type="button" class="deleteComment" value="글수정" onclick="boardUpdate()">
+</form>
+
+<script th:inline="javascript">
+    const boardUpdate = () => {
+        const pass = [[${boardUpdate.boardPass}]];
+        const id = [[${boardUpdate.id}]];
+        const inputPass = document.getElementById("boardPass").value;
+        if (pass !== inputPass) {
+            alert("작성자가 일치하지 않습니다!");
+            location.href= "/board/update/" +id;
+        }else {
+            document.updateForm.submit();
+        }
+    }
+</script>
+</body>

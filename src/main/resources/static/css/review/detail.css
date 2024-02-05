@@ -1,0 +1,128 @@
+body {
+    padding:1.5em;
+    background: #f5f5f5
+}
+
+table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th {
+    text-align: left;
+}
+
+thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+}
+
+td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+}
+
+td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}
+
+a {
+    color: #73685d;
+}
+
+input {
+    border: 1px #a39485 solid;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: auto;
+    height: 30px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* detail.css 파일에 다음 CSS 코드를 추가하세요 */
+
+.deleteComment {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 5.5em;
+    height: 3.3em;
+    background-color: #97a2b6;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 부드러운 전환 효과를 추가합니다 */
+
+    /* 마우스 오버 효과를 위한 스타일 추가 */
+}
+
+.deleteComment:hover {
+    background-color: #5b5e67;
+}
+
+/* 다른 버튼에 대한 필요한 경우 유사한 스타일링을 추가하세요 */
+
+@media all and (max-width: 768px) {
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    table {
+        position: relative;
+        padding-bottom: 0;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+
+    thead {
+        float: left;
+        white-space: nowrap;
+    }
+
+    tbody {
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        white-space: nowrap;
+    }
+
+    tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    th {
+        border-bottom: 1px solid #a39485;
+    }
+
+    td {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+
+
+
+}

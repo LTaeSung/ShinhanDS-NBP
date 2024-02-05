@@ -1,0 +1,72 @@
+{{>layouts/link}}
+<body>
+{{>layouts/header}}
+{{>layouts/swiper}}
+<!-- 콘텐츠 -->
+    <main>
+        <section class="section-search">
+            <div class="title-search">
+                <div class="search">
+                    <input
+                            class="search-input"
+                            type="text"
+                            placeholder="검색어를 입력해주세요"
+                            id="searchInput"
+                            onkeypress="handleKeyPress(event)"
+                    />
+                </div>
+                <div class="search-section" onclick="performSearch()">
+                <!-- 검색 아이콘 클릭 시 검색 결과 페이지로 이동 -->
+                <img width="32px" src="/img/search.png" alt=""/>
+            </div>
+            </div>
+        </section>
+
+        <section class="section">
+        {{>layouts/menu}}
+        </section>
+    </main>
+
+
+<!-- 하단 메뉴 -->
+{{>layouts/nav}}
+
+<!-- 푸터 -->
+{{>layouts/footer}}
+
+<!--<script>-->
+<!--    const btn = document.querySelector('.more-btn')-->
+<!--    btn.addEventListener('click',()=>{-->
+<!--        // 더보기 버튼을 클릭하면 AJAX 또는 서버 리다이렉션을 통해 /moreStores로 이동-->
+<!--        window.location.href = "/moreStores";-->
+<!--    })-->
+<!--</script>-->
+<script>
+    function handleKeyPress(event) {
+        // 엔터 키가 눌렸을 때
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    }
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value;
+
+        // 검색어를 URL에 추가하여 새로운 페이지로 이동
+        window.location.href = `/owner/store/searchResults?searchTerm=${searchTerm}`;
+    }
+</script>
+
+
+<script>
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value;
+
+        // 검색어를 URL에 추가하여 새로운 페이지로 이동
+        window.location.href = `/owner/store/searchResults?searchTerm=${searchTerm}`;
+    }
+</script>
+</body>
+</html>
+
+

@@ -15,3 +15,17 @@ document.querySelectorAll('.list-unstyled a').forEach(link => {
       loadContent(url);
   });
 });
+
+// 메뉴 항목에 이벤트 리스너 추가하는 함수
+function addMenuEventListeners() {
+    document.querySelectorAll('.list-unstyled a').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const url = this.getAttribute('href');
+            loadContent(url);
+        });
+    });
+}
+
+// 초기 로드 시 메뉴 항목에 이벤트 리스너 추가
+addMenuEventListeners();

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <style>
+        .about__card {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .about-store {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-store-comment {
+            padding: 10px;
+        }
+
+        .about__title {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .about__text {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<h1>검색 결과</h1>
+
+<div id="searchResultsContainer">
+    <!-- 검색 결과를 동적으로 추가할 목록 -->
+    <ul id="searchResultsList">
+        <!-- Thymeleaf를 사용하여 검색 결과를 반복하여 출력 -->
+        <div th:each="result : ${searchResults}">
+            <!-- th:onclick을 사용하여 변수 전달 -->
+            <div class="about__card category-1 box" th:onclick="'redirectToStore(\'' + ${result.id} + '\')'">
+                <div class="about-store">
+                    <!-- 각 가게에 대한 정보 표시 -->
+                    <a href="javascript:void(0);" class="bookmark">
+                        <i class="fa-regular fa-bookmark"></i>
+                    </a>
+                </div>
+                <div class="about-store-comment">
+                    <h2 class="about__title _1" th:text="${result.name}"></h2>
+                    <p class="about__text" th:text="${result.description}"></p>
+                </div>
+            </div>
+        </div>
+    </ul>
+</div>
+
+<script>
+
+    // JavaScript 함수에서는 해당 부분을 그대로 사용
+    function redirectToStore(storeId) {
+        window.location.href = `/owner/store/${storeId}`;
+    }
+</script>
+</body>
+</html>

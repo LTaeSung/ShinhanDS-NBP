@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>일반 회원 회원가입</title>
+    <!-- jquery cdn -->
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous">
+    </script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- name속성: 서버로 전송할 때 변수이름의 역할 -->
+<!-- name 에 넣은 값을 스프링이 dto setter로 알아서 dto에 넣어줌 -->
+<!-- id 속성은 중복 불가 -->
+<!-- 마우스 포커스가 빠져나갈 때(Blur 이벤트가 발생할 때) 실행되는 JavaScript 코드를 지정하는 속성 -->
+<!-- action속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
+<form action="/member/save" method="post">
+    이메일:<input type="text" name="memberEmail" id="memberEmail" readonly> <br>
+    <!-- <p id="check-result"></p> -->
+    비밀번호: <input type="password" name="memberPassword"> <br>
+    이름: <input type="text" name="memberName"> <br>
+    폰번호: <input type="text" name="memberPhone"> <br>
+    닉네임: <input type="text" name="memberNickname"> <br>
+    주소: <input type="text" name="memberAddress"> <br>
+    <input type="submit" value="회원가입">
+
+</form>
+</body>
+<!-- URL에서 매개변수를 가져와서 memberEmail 입력란에 설정하는 JavaScript 코드 -->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // URL에서 매개변수 가져오기
+        var urlParams = new URLSearchParams(window.location.search);
+        var mailParam = urlParams.get('memberEmail');
+
+        // mailParam이 존재하면 memberEmail 입력란에 설정
+        if (mailParam) {
+            $("#memberEmail").val(mailParam);
+        }
+    });
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+

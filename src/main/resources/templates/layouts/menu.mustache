@@ -1,0 +1,240 @@
+
+
+
+    <div class="list-button">
+        <button id="button-all">기본 순</button>
+        <button id="button-1">북마크</button>
+    </div>
+
+    <div class="about">
+        {{#stores}}
+        <div class="about__card category-1 box">
+            <a href="/owner/store/{{id}}" class="store-click" onclick="redirectToStore('{{id}}')">
+            <div class="about-store">
+                <a href="javascript:void(0);" class="bookmark">
+                    <i class="fa-regular fa-bookmark"></i>
+                </a>
+            </div>
+
+                <h2 class="about__title">
+                    {{name}}
+                </h2>
+            </a>
+
+        </div>
+
+        {{/stores}}
+    </div>
+
+
+
+
+<script>
+    // 페이지 로드 시 자동으로 실행되는 함수
+    window.addEventListener('load', function () {
+        // 페이지 로드 후 초기 데이터를 가져오는 함수 호출
+        loadInitialImages();
+// 스크롤 이벤트 핸들링 함수 등록
+        window.addEventListener('scroll', handleScroll);
+    });
+
+
+
+    document.getElementById('button-all').addEventListener('click', function () {
+        showAllCards(); // 기본 순 버튼 클릭 시 모든 카드 보이기
+    });
+    // 수정된 함수: 모든 카드 보이기
+    function showAllCards() {
+        const allCards = document.querySelectorAll('.about__card');
+        allCards.forEach(card => card.style.display = 'block');
+
+        // 새로운 요소를 추가한 후에 about의 높이를 조절
+        adjustAboutHeight();
+    }
+
+    // 북마크 이벤트 위임을 위해 .about 클래스에 이벤트를 걸어주기
+    document.querySelector('.about').addEventListener('click', function (event) {
+        if (event.target.classList.contains('fa-regular') || event.target.classList.contains('fa-solid')) {
+            // 클릭된 요소가 북마크 아이콘인 경우
+            event.target.classList.toggle('fa-regular');
+            event.target.classList.toggle('fa-solid');
+        }
+    });
+
+    document.getElementById('button-1').addEventListener('click', function () {
+        filterCards(); // 북마크 버튼 클릭 시 카드 필터링
+    });
+
+    // 새로운 함수 추가: 북마크 상태에 따라 카드 필터링
+    function filterCards() {
+        const bookmarkedCards = document.querySelectorAll('.about__card .fa-solid'); // 수정된 부분
+        const allCards = document.querySelectorAll('.about__card');
+
+        if (bookmarkedCards.length > 0) {
+            allCards.forEach(card => {
+                if (card.querySelector('.fa-regular')) { // 수정된 부분
+                    card.style.display = 'none';
+                } else {
+                    card.style.display = 'block';
+                }
+            });
+        } else {
+            allCards.forEach(card => card.style.display = 'block');
+        }
+
+        // 새로운 요소를 추가한 후에 about의 높이를 조절
+        adjustAboutHeight();
+    }
+
+
+    const aboutGrid = document.querySelector('.about');
+    let storeFileEntityList = [];
+    async function loadInitialImages() {
+
+        try {
+            const response = await fetch('/api/get-initial-images');
+            storeFileEntityList = await response.json();
+            console.log(storeFileEntityList);
+
+            // 이미지를 담을 컨테이너
+            const imageContainers = document.querySelectorAll('.about-store');
+
+            // 각 박스에 이미지 추가
+            storeFileEntityList.forEach((image, index) => {
+                const existingCard = aboutGrid.children[index];
+                if (existingCard) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = `/images/${image.id}`;
+
+
+                    // 각 이미지에 대한 div 엘리먼트 생성
+                    const divElement = document.createElement('div');
+                    divElement.className = 'about-store-image-item';
+                    divElement.appendChild(imgElement);
+
+                    // 이미지를 담을 컨테이너에 추가
+                    const targetContainer = imageContainers[index % imageContainers.length];
+                    targetContainer.appendChild(divElement);
+
+                }
+            });
+
+            // 새로운 요소를 추가한 후에 about의 높이를 조절
+            adjustAboutHeight();
+        } catch (error) {
+            console.error('Error loading initial images:', error);
+        }
+    }
+
+
+
+    const btn = document.querySelector('.more-btn');
+    let currentPage = 0; // 초기 페이지 번호
+
+
+    async function fetchRenderedHTMLFromServer() {
+        try {
+            const response = await fetch('/customer/{id}'); // 실제 엔드포인트에 맞게 수정
+            const html = await response.text();
+            return html;
+        } catch (error) {
+            console.error('Error fetching rendered HTML:', error);
+        }
+    }
+
+    function redirectToStore(id) {
+
+        window.location.href = "/owner/store/" + id;
+    }
+
+    // 이미지 ID를 찾는 함수
+    function findImageIdForStore(storeId) {
+        console.log(storeId);
+        const obj = JSON.stringify(storeFileEntityList);
+        // obj는 비어있다
+        console.log("list : " + obj);
+        const storeImage = storeFileEntityList.find(image => image['storeEntity'].id === storeId);
+        console.log(storeImage);
+        return storeImage ? storeImage.id : null;
+    }
+
+
+    // 스크롤 이벤트를 감지하여 페이징 처리하는 함수
+    async function handleScroll() {
+
+        const scrollThreshold = 100; // 스크롤 도달 시 추가 데이터를 로드할 임계값
+        const isScrollAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - scrollThreshold;
+
+        if (isScrollAtBottom) {
+            try {
+                console.log(currentPage);
+                currentPage++; // 스크롤이 발생할 때마다 페이지 번호 증가
+
+                // 서버에 데이터 요청
+                const response = await fetch(`/api/get-more-data?page=${currentPage}&pageSize=8`);
+                const newData = await response.json();
+
+                // 새로운 게시물을 동적으로 생성
+                newData.forEach(item => {
+                    const newPost = document.createElement('div');
+                    newPost.className = 'about__card category-1 box';
+
+                    newPost.innerHTML = `
+                    <a href="/owner/store/${item.id}" class="store-click" onclick="redirectToStore('${item.id}')">
+                        <div class="about-store">
+                            <a href="javascript:void(0);" class="bookmark">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </a>
+                        </div>
+                            <h2 class="about__title">${item.name}</h2>
+                    </a>
+                `;
+
+
+                    // storeFileEntityList에서 해당 이미지의 ID를 찾아서 사용
+                    const imgElement = document.createElement('img');
+                    console.log("item:" + item.id);
+                    const imageId = findImageIdForStore(item.id); // 여기에서 적절한 함수로 이미지 ID를 찾아서 사용
+                    imgElement.src = `/images/${imageId}`;
+                    imgElement.alt = `${item.name} 이미지`;
+
+                    // 각 이미지에 대한 div 엘리먼트 생성
+                    const divElement = document.createElement('div');
+                    divElement.className = 'about-store-image-item';
+
+                    // 이미지를 담을 컨테이너에 추가
+                    newPost.querySelector('.about-store').appendChild(divElement).appendChild(imgElement);
+
+
+                    aboutGrid.appendChild(newPost);
+
+                });
+
+                // 새로운 요소를 추가한 후에 about의 높이를 조절
+                adjustAboutHeight();
+            } catch (error) {
+                console.error('Error loading more data:', error);
+            }
+        }
+    }
+    // .about의 높이를 동적으로 조절하는 함수
+    function adjustAboutHeight() {
+        // .about의 높이를 가져와서 최대 높이를 찾음
+        const aboutHeight = aboutGrid.scrollHeight;
+
+        // 최대 높이를 찾은 후, 현재 창의 높이와 비교하여 큰 값을 적용
+        const maxHeight = Math.max(aboutHeight, window.innerHeight);
+
+        // .about의 높이 설정
+        aboutGrid.style.height = `${maxHeight}px`;
+
+        // 스크롤이 필요한 경우에만 스크롤을 활성화
+        aboutGrid.style.overflowY = aboutHeight > window.innerHeight ? 'auto' : 'hidden';
+    }
+
+
+
+
+
+
+</script>

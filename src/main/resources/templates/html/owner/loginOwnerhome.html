@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        .inline-text {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<h2><p class="inline-text" th:text="${session.loginName}"></p> 점주님 로그인 완료</h2>
+
+<a href="/owner/update">내 정보 수정하기</a>
+<a href="/owner/logout">로그아웃</a>
+<a href="/owner/">회원목록</a>
+
+</body>
+</html>

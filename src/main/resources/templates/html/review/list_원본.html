@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+<div name="reviewList">
+<table>
+    <tr>
+        <th>사진</th>
+        <br>
+        <th>제목</th>
+        <br>
+        <th>글쓴이</th>
+        <br>
+        <th>내용</th>
+        <br>
+        <th>작성날짜</th>
+        <br>
+        <th>조회수</th>
+    </tr>
+
+    <tr th:each="board: ${boardList}">
+        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt="" style="width: 120px"></td>
+        <td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+        <td th:text="${board.boardWriter}"></td>
+        <td th:text="${board.boardContents}"></td>
+        <td th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${board.boardHits}" style="font-size: 30px"></td>
+
+    </tr>
+</table>
+</div>
+
+<button onclick="indexReq()" style="width: 200px; align-content: center">글쓰기</button>
+</body>
+<script>
+    const indexReq = () => {
+        location.href = "/board/save";
+    }
+</script>
+
+</html>

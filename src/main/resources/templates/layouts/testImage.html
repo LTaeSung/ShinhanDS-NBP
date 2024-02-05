@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+
+        window.onload = function (){
+
+            document.querySelector("#button").addEventListener("click",function (){
+                let form = document.querySelector("#fileForm");
+                console.log(form);
+                console.log("hi");
+                let files = document.querySelectorAll(".file2");
+                console.log(files[0].files);
+
+                form.submit();
+
+            });
+
+        }
+
+
+    </script>
+</head>
+<body>
+<h2>파일 업로드</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data" id="fileForm">
+
+    <h4>단일 파일 업로드</h4>
+    <input type="file" name="files" class="file2">
+
+    <h4>다중 파일 업로드</h4>
+    <input type="file"  name="files" class="file2">
+
+</form>
+<button id="button">버튼</button>
+</body>
+</html>

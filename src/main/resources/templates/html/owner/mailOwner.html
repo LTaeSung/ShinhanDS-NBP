@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>점주 이메일 인증</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 400px;
+            text-align: center;
+        }
+
+        #mail_input,
+        #mail_number {
+            padding: 10px 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-div {
+            width: 75%;
+        }
+
+        #main_input > div {
+            margin-left: 10em;
+        }
+
+        #main_number > div {
+            margin-left: 10em;
+        }
+
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #b6c1cb;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #check-result {
+            margin: 1px 0;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        form {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #787d86;
+        }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function sendNumber() {
+        // $("#mail_number").css("display", "block");
+        $.ajax({
+            url: "/mailOwner",
+            type: "post",
+            dataType: "json",
+            data: {"ownerEmail": $("#ownerEmail").val()},
+            success: function (data) {
+                alert("인증번호 발송");
+                $("#Confirm").attr("value", data);
+                enableInputFields();
+            }
+        });
+    }
+
+    function confirmNumber() {
+        var number1 = $("#number").val();
+        var number2 = $("#Confirm").val();
+
+        if (number1 === "") {
+            alert("인증번호를 입력하세요.");
+            return;
+        }
+        if (number1 == number2) {
+            alert("인증되었습니다.");
+            enableInputFields();
+            enableSubmitButton();
+        } else {
+            alert("번호가 다릅니다.");
+            disableSubmitButton();
+        }
+    }
+
+    const emailCheck = () => {
+        const email = document.getElementById("ownerEmail").value;
+        const checkResult = document.getElementById("check-result");
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        console.log("입력값: ", email);
+
+        if (!emailPattern.test(email)) {
+            console.log("이메일 형식이 올바르지 않습니다.");
+            checkResult.style.color = "red";
+            checkResult.innerHTML = "이메일 형식이 올바르지 않습니다.";
+            disableSubmitButton();
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/owner/email-check",
+            data: {
+                "ownerEmail": email
+            },
+            success: function (res) {
+                console.log("요청성공", res);
+                if (res == "ok") {
+                    console.log("사용가능한 이메일");
+                    checkResult.style.color = "green";
+                    checkResult.innerHTML = "사용가능한 이메일";
+                    disableSubmitButton();
+
+                } else {
+                    console.log("이미 사용중인 이메일");
+                    checkResult.style.color = "red";
+                    checkResult.innerHTML = "이미 사용중인 이메일";
+                    disableSubmitButton();
+                }
+            },
+            error: function (err) {
+                console.log("에러발생", err);
+            }
+        });
+    }
+
+
+    // 이메일 인증 후 입력
+    function enableInputFields() {
+        $("#ownerPassword").prop("disabled", false);
+        $("#ownerName").prop("disabled", false);
+        $("#ownerPhone").prop("disabled", false);
+        $("#ownerNickname").prop("disabled", false);
+        $("#ownerAddress").prop("disabled", false);
+    }
+
+    // 이메일 인증 후 입력
+    function enableSubmitButton() {
+        $("#submitBtn").prop("disabled", false);
+    }
+
+    // 이메일 인증 전 입력 방지
+    function disableSubmitButton() {
+        $("#submitBtn").prop("disabled", true);
+    }
+
+</script>
+<body>
+<div id="container">
+    <h2>점주 이메일 인증</h2>
+    <form action="/owner/save" method="post">
+        <div id="mail_input" name="mail_input">
+            <div class="input-div">
+                <input type="text" name="ownerEmail" id="ownerEmail" onkeyup="emailCheck()" placeholder="이메일 입력">
+            </div>
+            <div>
+                <button type="button" id="sendBtn" name="sendBtn" onclick="sendNumber()">인증번호</button>
+            </div>
+        </div>
+        <p id="check-result"></p>
+        <br>
+        <div id="mail_number" name="mail_number">
+            <div class="input-div">
+                <input type="text" name="number" id="number" placeholder="인증 번호 입력">
+            </div>
+            <div>
+                <button type="button" name="confirmBtn" id="confirmBtn" onclick="confirmNumber()">인증확인</button>
+            </div>
+        </div>
+        <br>
+        <input type="text" id="Confirm" name="Confirm" style="display: none" value="">
+        비밀번호: <input type="password" name="ownerPassword" id="ownerPassword" disabled> <br>
+        이름: <input type="text" name="ownerName" id="ownerName" disabled> <br>
+        폰번호: <input type="text" name="ownerPhone" id="ownerPhone" disabled> <br>
+        닉네임: <input type="text" name="ownerNickname" id="ownerNickname" disabled> <br>
+        주소: <input type="text" name="ownerAddress" id="ownerAddress" disabled> <br>
+        <input type="submit" value="회원가입" id="submitBtn" disabled>
+    </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    // Your existing JavaScript code here
+</script>
+</body>
+</html>

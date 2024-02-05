@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/html/link :: link"/> <!--메타 정보 등-->
+<link rel="stylesheet" href="/css/order/order.css"/>
+</head>
+<body>
+
+<header th:replace="layouts/html/header :: header"/> <!--헤더 뼈대-->
+
+<section>
+    <!-- Menu Section -->
+    <div class="store-detail">
+        <img class="store-image" th:src="@{http://또리커피.com/images/header_logo.png}" alt="Store Image"/>
+
+        <div class="store-info">
+            <h2>가게 정보</h2>
+            <p>위치: 가게 위치</p>
+            <p>영업 시간: 09:00 AM - 10:00 PM</p>
+        </div>
+
+        <h2>메뉴</h2>
+        <div class="menu-item">
+            <img class="food-image" src="/img/delivery/chinese5.png" alt="Store Image"/>
+            <span>음식 1</span>
+            <span>10,000원</span>
+        </div>
+        <div class="menu-item">
+            <img class="food-image" src="/img/delivery/chinese5.png" alt="음식 이미지">
+            <span>음식 2</span>
+            <span>15,000원</span>
+        </div>
+        <!-- 더 많은 메뉴 아이템 추가 가능 -->
+    </div>
+
+</section>
+
+<div th:replace="layouts/html/footer :: footer"/> <!--푸터 뼈대-->
+
+</body>
+</html>

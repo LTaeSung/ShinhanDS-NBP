@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>id</th>
+    <th>email</th>
+    <th>password</th>
+    <th>name</th>
+    <th>phone</th>
+    <th>nickname</th>
+    <th>address</th>
+  </tr>
+  <tr>
+    <td th:text="${owner.id}"></td>
+    <td th:text="${owner.ownerEmail}"></td>
+    <td th:text="${owner.ownerPassword}"></td>
+    <td th:text="${owner.ownerName}"></td>
+    <td th:text="${owner.ownerPhone}"></td>
+    <td th:text="${owner.ownerNickname}"></td>
+    <td th:text="${owner.ownerAddress}"></td>
+  </tr>
+
+  <a href="/loginhome">홈페이지로 돌아가기</a>
+</table>
+</body>
+</html>

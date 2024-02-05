@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원 상세 정보</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .m-title {
+            width: 80%;
+            margin-left: 40px;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            height: 50px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .btn {
+            display: block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #b1bdcb;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #9cacbd;
+        }
+    </style>
+</head>
+
+<body style="display: flex; flex-direction: column; align-items: center;">
+<div class="m-title">
+    <h3>회원 정보 상세보기</h3>
+</div>
+<table>
+    <tr>
+        <th>id</th>
+        <th>email</th>
+        <th>password</th>
+        <th>name</th>
+        <th>phone</th>
+        <th>nickname</th>
+        <th>address</th>
+    </tr>
+    <tr>
+        <td th:text="${member.id}"></td>
+        <td th:text="${member.memberEmail}"></td>
+        <td th:text="${member.memberPassword}"></td>
+        <td th:text="${member.memberName}"></td>
+        <td th:text="${member.memberPhone}"></td>
+        <td th:text="${member.memberNickname}"></td>
+        <td th:text="${member.memberAddress}"></td>
+    </tr>
+</table>
+<div class="b_btn" style="margin-top: 20px;">
+<a href="/customer/" class="btn">홈페이지</a>
+</div>
+</body>
+
+</html>

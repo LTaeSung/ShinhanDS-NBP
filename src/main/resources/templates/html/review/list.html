@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/review/list.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/header.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/footer.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mypage/mypage.css">
+</head>
+<body>
+<!--<div id="form-commentInfo">-->
+<!--    <div id="comment-count">댓글 <span id="count">0</span></div>-->
+<!--    <input id="comment-input" placeholder="댓글을 입력해 주세요.">-->
+<!--    <button id="submit" class="deleteComment">등록</button>-->
+<!--</div>-->
+
+<!--<div id=comments>-->
+
+<!--</div>-->
+
+<!--<script src="/js/review/list.js"></script>-->
+<div th:insert="~{layouts/html/header :: header}"></div>
+<div th:insert="~{layouts/html/mypagelink :: mypagelink}"></div>
+
+<div class="mypage-container">
+    <div class="nav1">
+        <a href="../board/list2" onclick="showContent('notice')">공지사항</a>
+        <a href="../board/" onclick="showContent('reviews')">리뷰</a>
+        <a href="../mypage/bookmark" onclick="showContent('bookmarks')">북마크</a>
+    </div>
+    <div class="content notice active">
+        <div class="notice-item">
+            <pagelist th:fragment="pagelist">
+                <div id="contents" >
+                    <div class="eachComment" th:each="board: ${boardList}" th:if="${board.boardWriter == session.loginName}" style="width: 100%">
+                        <div>
+                            <div class="time" style="float: right; font-size: 15px;">조회수 :<span th:text="${board.boardHits}">0</span></div>
+                            <div class="name" th:text="${board.boardWriter}" ></div>
+                            <a th:href="@{|/board/${board.id}|}"><button class="deleteComment" style="float: right">상세보기</button></a>
+                        </div>
+                        <div class="inputValue" th:text="${board.boardTitle}"></div>
+                        <div><img th:src="@{|/upload/${board.storedFileName}|}" alt="" style="width: 120px"></div>
+                        <div class="inputValue" th:text="${board.boardContents}"></div>
+                        <div class="time" th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                    </div>
+                    <button onclick="indexReq()" class="deleteComment" style="width: 200px; align-content: center; background-color: cornflowerblue;
+                            border: none;
+                            border-radius: 5px;
+                            color: aliceblue;">글쓰기</button>
+                </div>
+            </pagelist>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<!--<div name="AllreviewList">-->
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>사진</th>-->
+<!--        <br>-->
+<!--        <th>제목</th>-->
+<!--        <br>-->
+<!--        <th>글쓴이</th>-->
+<!--        <br>-->
+<!--        <th>내용</th>-->
+<!--        <br>-->
+<!--        <th>작성날짜</th>-->
+<!--        <br>-->
+<!--        <th>조회수</th>-->
+<!--    </tr>-->
+
+<!--    <tr th:each="board: ${boardList}">-->
+<!--        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt="" style="width: 120px"></td>-->
+<!--        <td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>-->
+<!--        <td th:text="${board.boardWriter}"></td>-->
+<!--        <td th:text="${board.boardContents}"></td>-->
+<!--        <td th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--        <td th:text="${board.boardHits}" style="font-size: 30px"></td>-->
+
+<!--    </tr>-->
+<!--</table>-->
+<!--</div>-->
+
+
+</body>
+
+<script>
+
+    const indexReq = () => {
+        location.href = "/board/save";
+    }
+</script>
+
+</html>
+<div th:insert="~{layouts/html/footer :: footer}"></div>

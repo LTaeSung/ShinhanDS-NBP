@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head></head>
+<body> <!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<div>
+    <h2>포트원 결제</h2>
+
+    <h2 id="loginName" th:text="${session.loginName}"> </h2>
+    <button id="iamportPayment" type="button">결제테스트</button>
+
+    <script>
+
+        //문서가 준비되면 제일 먼저 실행
+        $(document).ready(function () {
+            $("#iamportPayment").click(function () {
+                iamportPayment(); // 버튼 클릭하면 호출
+
+            });
+        })
+
+        //버튼 클릭하면 실행
+        function iamportPayment() {
+            var loginName = "";
+            $.ajax({
+                url: '/getLoginName',
+                type: 'GET',
+                success: function(data) {
+                    // data는 JavaScript 객체로 변환된다.
+                    console.log(data);
+                    loginName = data;
+                },
+                error: function() {
+                    console.error('Failed to get loginName from the server.');
+                }
+            });
+            // 현재 시간을 milliseconds로 얻어옴
+            var currentTime = new Date().getTime();
+            // merchant_uid에 현재 시간을 추가하여 사용
+            var merchantUid = "test_" + currentTime;
+
+
+            IMP.init('imp53158047'); //아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+
+            IMP.request_pay({
+                pg: "kakaopay",
+                pay_method: "card",
+                merchant_uid: merchantUid,
+                name: "상품",
+                amount: 50,
+                buyer_id : "1",
+                buyer_email: "testiamport@naver.com",
+                buyer_name: loginName,
+                buyer_tel: "01012341234"
+            }, function (rsp) {
+                // callback
+                if (rsp.success) {
+                    alert("[완료] imp_uid : " + rsp.imp_uid + " / merchant_uid : " + rsp.merchant_uid + "/ name : " + loginName);
+
+                } else {
+                    alert("[실패] 코드(" + rsp.error_code + ") / 메세지(" + rsp.error_msg + ")");
+                }
+            });
+        }
+    </script>
+
+</div>
+</body>
+</html>

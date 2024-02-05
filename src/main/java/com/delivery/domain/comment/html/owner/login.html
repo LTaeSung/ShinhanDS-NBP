@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>점주 로그인</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        p {
+            color: red;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #555;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+<form action="/owner/login" method="post" onsubmit="return validateLogin()">
+    <h2>점주 로그인</h2>
+
+    이메일: <input type="text" name="ownerEmail" id="ownerEmail"> <br>
+
+    비밀번호: <input type="password" name="ownerPassword" id="ownerPassword"> <br>
+
+    <p id="login-error"></p>
+
+    <p th:text="${error}"></p>
+    <input type="submit" value="로그인">
+    <input type="button" value="회원가입" onclick="window.location.href='/mailOwner'">
+</form>
+
+<script>
+    function validateLogin() {
+        const email = document.getElementById("ownerEmail").value;
+        const password = document.getElementById("ownerPassword").value;
+        const errorElement = document.getElementById("login-error");
+
+        if (email.trim() === '' || password.trim() === '') {
+            errorElement.innerHTML = "이메일과 비밀번호를 입력하세요.";
+            return false; // 폼 제출을 막음
+        }
+
+        // 선택사항: 서버와 통신하여 로그인 자격 증명을 확인할 수 있습니다.
+        // 실제 코드에서는 서버에서 로그인 유효성을 확인하도록 합니다.
+
+        // 이전 오류 메시지를 지웁니다.
+        errorElement.innerHTML = "";
+
+        return true; // 폼 제출 허용
+    }
+</script>
+
+</body>
+
+</html>

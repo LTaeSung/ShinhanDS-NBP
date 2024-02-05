@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+<body>
+<form action="/owner/update" method="post">
+    <!-- value 안에 id는 hidden 시켜놓고
+     dto 받아온 값 보여주기
+     name 필드는 항상 dto 필드의 이름과 같게!!-->
+    <input type="hidden" th:value="${updateOwner.id}" name="id"><br>
+    이메일: <input type="text" th:value="${updateOwner.ownerEmail}" name="ownerEmail" readonly> <br> <!-- 이메일은 리드온리 -->
+    비밀번호: <input type="text" th:value="${updateOwner.ownerPassword}" name="ownerPassword"> <br>
+    이름: <input type="text" th:value="${updateOwner.ownerName}" name="ownerName"> <br>
+    폰번호: <input type="text" th:value="${updateOwner.ownerPhone}" name="ownerPhone"> <br>
+    닉네임: <input type="text" th:value="${updateOwner.ownerNickname}" name="ownerNickname"> <br>
+    주소: <input type="text" th:value="${updateOwner.ownerAddress}" name="ownerAddress"> <br>
+    <input type="submit" value="정보수정">
+</form>
+
+</body>
+</html>

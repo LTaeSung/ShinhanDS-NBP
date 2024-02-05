@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NRS</title>
+    <link rel="stylesheet" href="/css/customer/customer.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/customer/swiper.css">
+    <!-- 카카오 맵 API 키 -->
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67db8676f9e68a4cfa0568a0cd5a8115"></script>
+    <script src="../../js/customer/customer.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/d264bc01c7.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="http://hwangsunsoo.com/lecture/do_it_interactive/13/js/isotope.pkgd.min.js"></script>
+    <script src="../../js/customer/swiper.js" defer></script>
+    <script src="../../js/customer/fillter.js" defer></script>
+</head>
+<body>
+<header>
+    <div></div>
+    <div>
+        <img id="logo" src="/img/logo.png" alt="로고"/>
+    </div>
+    <div class="profile-section">
+        <img width="36px" src="../../img/basket.png" alt=""/>
+        <img width="42px" src="../../img/user-circle.png" alt=""/>
+        <div class="profile-dropdown">
+
+            <div class="nav-bar-profile">
+                <div>사진 <span> <p th:text="${session.loginName} " style="display: inline;"></p></span></div>
+                <div>
+                    <a href="/member/login">로그인</a>
+                </div>
+            </div>
+            <!-- 드롭다운 내용 추가 -->
+            <div class="nav-bar-couponAndPoint">
+                <div class="coupon">쿠폰 <span>1장</span></div>
+                <div class="point">포인트 <span>100000</span></div>
+            </div>
+
+            <a href="#">주문내역</a>
+            <a href="#">북마크</a>
+            <a href="#">내가 단 댓글</a>
+            <a href="#">포인트 충전</a>
+            <a href="#">포인트 충전 내역</a>
+            <a href="#">내 정보 수정</a>
+            <a href="#">설정</a>
+
+        </div>
+    </div>
+</header>
+<main>
+    <div>
+        <div class="wrap">
+            <h1>Today <span>delivery news</span></h1>
+
+            <ul class="auto">
+                <li class="btnStart"><i class="fas fa-play"></i></li>
+                <li class="btnStop"><i class="fas fa-pause"></i></li>
+            </ul>
+
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="inner">
+                        <div class="con">
+                            <img src="../../img/pic1.png">
+                            <h2>Ipsum dolor sit amet.</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, optio.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="inner">
+                        <div class="con">
+                            <img src="../../img/pic2.png">
+                            <h2>Lorem ipsum dolor.</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eum doloribus
+                                voluptate officiis excepturi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="inner">
+                        <div class="con">
+                            <img src="../../img/pic3.png">
+                            <h2>Dolor ipsum sit.</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi officiis iste nam
+                                quae.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="inner">
+                        <div class="con">
+                            <img src="../../img/pic4.png">
+                            <h2>Consectetur adicing.</h2>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit optio debitis
+                                sapiente!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 좌우버튼 -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- 페이징 버튼 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-search">
+            <div class="logo-input">
+                <img width="42px" src="../../img/search_logo.png" alt="로고"/>
+            </div>
+            <div class="title-search">
+                <div class="search">
+                    <input
+                            class="search-input"
+                            type="text"
+                            placeholder="검색어를 입력해주세요"
+                    />
+                </div>
+                <div class="search-section">
+                    <img width="32px" src="../../img/search.png" alt=""/>
+                </div>
+            </div>
+            <div class="input-section">
+                <img width="32px" src="../../img/alert.png" alt=""/>
+            </div>
+        </div>
+
+        <div class="list-button">
+            <button id="button-all">기본 순</button>
+            <button id="button-1">북마크</button>
+            <button id="button-2">주문 많은 순</button>
+            <button id="button-3">리뷰 많은 순</button>
+        </div>
+        <div class="store-list">
+            <div class="listing">
+                <!— 각 숙소 항목 —>
+                <div class="listing-item category-1 box">
+                    <div class="list-class">
+                        <img src="../../img/dog1.png" alt="숙소 1"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="listing-item category-1 box">
+                    <div class="list-class">
+                        <img src="../../img/dog4.png"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="listing-item category-2 box">
+                    <div class="list-class ">
+                        <img src="../../img/dog5.png" alt="숙소 3"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="listing-item category-2 box">
+                    <div class="list-class">
+                        <img src="../../img/som.jpeg" alt="숙소 4"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="listing-item category-3 box">
+                    <div class="list-class">
+                        <img src="../../img/som2.jpeg" alt="숙소 5"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="listing-item category-3 box">
+                    <div class="list-class">
+                        <img src="../../img/som3.jpeg" alt="숙소 6"/>
+                        <a href="javascript:void(0);" class="bookmark">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="more-btn">더보기</button>
+
+        <!-- map-->
+        <!-- 지도 -->
+        <div class="map-cantainer">
+            <p>위치</p>
+            <div id="map" class="map"></div>
+        </div>
+    </div>
+</main>
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-product">
+            <h5>이용안내</h5>
+            <ul class="list-unstyled">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Enterprise</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-customer">
+            <h5>고객지원</h5>
+            <ul class="list-unstyled">
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">서비스 소개</a></li>
+                <li><a href="#">자주 묻는 질문</a></li>
+            </ul>
+        </div>
+        <div class="footer-company">
+            <h5>회사소개</h5>
+            <ul class="list-unstyled">
+                <li><a href="#">크림 주식회사 · 대표 김창욱</a></li>
+                <li><a href="#">사업자등록번호 : 570-88-01618</a></li>
+                <li>
+                    <a href="#">
+                        사업장소재지 : 경기도 성남시 분당구 분당내곡로
+                        131 판교테크원 타워1, 8층
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul class="site-link list-unstyled">
+        <li>© 2023 Shinhan DS, Inc.</li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Site Map</a></li>
+        <li><a href="#">What is Git?</a></li>
+    </ul>
+</footer>
+</body>
+</html>

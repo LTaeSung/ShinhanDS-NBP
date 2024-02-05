@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:overflow="" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/review/page.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/header.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/footer.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mypage/mypage.css">
+    <title>Document</title>
+</head>
+{{>layouts/link}}
+<body>
+{{>layouts/header}}
+<div th:insert="~{layouts/html/header :: header}"></div>
+
+<section class="mainpage">
+    <div class="main-banner">
+        <div class="icon1">
+            <a class="notice-item" href="#" onclick="showContent('member-change')">
+                <img src="/img/setting.png" alt="회원수정 이미지">
+                <div class="overlay-text">회원정보 수정</div>
+            </a>
+        </div>
+        <div class="icon1">
+            <a class="notice-item" href="#" onclick="showContent('points')">
+                <img src="/img/seli.png" alt="결제 이미지">
+                <div class="overlay-text">결제</div>
+            </a>
+        </div>
+        <div class="icon1">
+            <a class="notice-item" href="#" onclick="showContent('order-lists')">
+                <img src="/img/order.png" alt="주문내역 이미지">
+                <div class="overlay-text">주문내역</div>
+            </a>
+        </div>
+        <div class="icon1">
+            <a class="notice-item" href="../customer/" onclick="showContent('back-home')">
+                <img src="/img/main2.png" alt="메인 이미지">
+                <div class="overlay-text">메인으로</div>
+            </a>
+        </div>
+    </div><br><br>
+    <div class="mypage-container">
+        <div class="nav1">
+            <a href="../board/list2" onclick="showContent('notice')">공지사항</a>
+            <a href="../board/" onclick="showContent('reviews')">리뷰</a>
+            <a href="#" onclick="showContent('bookmarks')">북마크</a>
+        </div>
+        <div class="content notice active">
+
+            <div class="abouttt">
+                {{#stores1}}
+                    <div class="bookmark-item">
+                        <a href="/owner/store/{{id}}" class="store-click" onclick="redirectToStore('{{id}}')">
+                            <div class="about-storeee">
+                                <a href="javascript:void(0);" class="bookmark">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </a>
+                            </div>
+                            <h2 class="about__title">
+                                <h3>{{name}}</h3>
+                            </h2>
+                        </a>
+
+                    </div>
+
+                {{/stores1}}
+                {{#stores2}}
+                    <div class="bookmark-item">
+                        <a href="/owner/store/{{id}}" class="store-click" onclick="redirectToStore('{{id}}')">
+                            <div class="about-storeee">
+                                <a href="javascript:void(0);" class="bookmark">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </a>
+                            </div>
+                            <h2 class="about__title">
+                                <h3>{{name}}</h3>
+                            </h2>
+                        </a>
+
+                    </div>
+
+                {{/stores2}}
+            </div>
+
+        </div>
+    </div><br><br>
+</section>
+<h1 th:text="${ssg}"></h1>
+
+<div th:insert="~{layouts/html/footer :: footer}"></div>
+{{>layouts/footer}}
+<script type="text/javascript" src="/js/mypage/mypage.js"></script>
+</body>
+
+</html>

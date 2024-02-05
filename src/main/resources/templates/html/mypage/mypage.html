@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:overflow="" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/review/page.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/header.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/layout/footer.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mypage/mypage.css">
+    <title>Document</title>
+</head>
+
+<body>
+<div th:insert="~{layouts/html/header :: header}"></div>
+    <main class="container" overflow: scroll>
+        <section class="mainpage">
+                        <div class="main-banner">
+                            <div class="icon1">
+                                <a class="notice-item" href="#" onclick="showContent('member-change')">
+                                    <img src="/img/1.png" alt="회원수정 이미지">
+                                    <div class="overlay-text">회원정보 수정</div>
+                                </a>
+                            </div>
+                            <div class="icon1">
+                                <a class="notice-item" href="#" onclick="showContent('points')">
+                                    <img src="/img/4.png" alt="결제 이미지">
+                                    <div class="overlay-text">결제</div>
+                                </a>
+                            </div>
+                            <div class="icon1">
+                                <a class="notice-item" href="#" onclick="showContent('order-lists')">
+                                    <img src="/img/5.png" alt="주문내역 이미지">
+                                    <div class="overlay-text">주문내역</div>
+                                </a>
+                            </div>
+                            <div class="icon1">
+                                <a class="notice-item" href="#" onclick="showContent('back-home')">
+                                    <img src="/img/6.png" alt="메인 이미지">
+                                    <div class="overlay-text">메인으로</div>
+                                </a>
+                            </div>
+                        </div><br><br>
+            <div class="mypage-container">
+                <div class="nav1">
+                    <a href="#" onclick="showContent('notice')">공지사항</a>
+                    <a href="#" onclick="showContent('reviews')">리뷰</a>
+                    <a href="#" onclick="showContent('bookmarks')">북마크</a>
+                </div>
+                <div class="content notice active">
+                    <div class="notice-item">
+                        <h3><a href="#">공지사항 1</a></h3>
+                        <p>공지사항 내용입니다.</p>
+                    </div>
+                    <div class="notice-item">
+                        <h3><a href="#">공지사항 2</a></h3>
+                        <p>공지사항 내용입니다.</p>
+                    </div>
+                    <div class="notice-item">
+                        <h3><a href="#">공지사항 3</a></h3>
+                        <p>공지사항 내용입니다.</p>
+                    </div>
+                    <div class="notice-item">
+                        <h3><a href="#">공지사항 4</a></h3>
+                        <p>공지사항 내용입니다.</p>
+                    </div>
+                    <div class="notice-item">
+                        <h3><a href="#">공지사항 5</a></h3>
+                        <p>공지사항 내용입니다.</p>
+                    </div>
+                </div>
+                <div class="content reviews">
+                    <div class="review-item">
+                        <h3>리뷰 1</h3>
+                        <p>리뷰 내용입니다.</p>
+                    </div>
+                    <div class="review-item">
+                        <h3>리뷰 2</h3>
+                        <p>리뷰 내용입니다.</p>
+                    </div>
+                    <div class="review-item">
+                        <h3>리뷰 3</h3>
+                        <p>리뷰 내용입니다.</p>
+                    </div>
+                    <div class="review-item">
+                        <h3>리뷰 4</h3>
+                        <p>리뷰 내용입니다.</p>
+                    </div>
+                    <div class="review-item">
+                        <h3>리뷰 5</h3>
+                        <p>리뷰 내용입니다.</p>
+                    </div>
+                </div>
+
+                <div class="content bookmarks">
+                    <div class="bookmark-item">
+                        <h3>북마크 1</h3>
+                        <p>북마크 내용입니다.</p>
+                    </div>
+                    <div class="bookmark-item">
+                        <h3>북마크 2</h3>
+                        <p>북마크 내용입니다.</p>
+                    </div>
+                    <div class="bookmark-item">
+                        <h3>북마크 3</h3>
+                        <p>북마크 내용입니다.</p>
+                    </div>
+                    <div class="bookmark-item">
+                        <h3>북마크 4</h3>
+                        <p>북마크 내용입니다.</p>
+                    </div>
+                    <div class="bookmark-item">
+                        <h3>북마크 5</h3>
+                        <p>북마크 내용입니다.</p>
+                    </div>
+                </div>
+            </div><br><br>
+        </section>
+        <h1 th:text="${ssg}"></h1>
+    </main>
+<div th:insert="~{layouts/html/footer :: footer}"></div>
+    <script type="text/javascript" src="/js/mypage/mypage.js"></script>
+</body>
+
+</html>

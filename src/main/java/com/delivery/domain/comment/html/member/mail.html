@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>일반 회원 이메일 인증</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 400px;
+            text-align: center;
+        }
+
+        #mail_input,
+        #mail_number {
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        #mail_input {
+            display: block;
+        }
+
+        #mail_number {
+            display: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #007bff;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #check-result {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function sendNumber() {
+        $("#mail_number").css("display", "block");
+        $.ajax({
+            url: "/mail",
+            type: "post",
+            dataType: "json",
+            data: {"memberEmail": $("#memberEmail").val()},
+            success: function (data) {
+                alert("인증번호 발송");
+                $("#Confirm").attr("value", data);
+            }
+        });
+    }
+
+    function confirmNumber() {
+        var number1 = $("#number").val();
+        var number2 = $("#Confirm").val();
+
+        if (number1 == number2) {
+            alert("인증되었습니다.");
+
+            // 인증 성공 시 save.html 페이지로 이동
+            var mailValue = $("#memberEmail").val();
+            window.location.href = "member/save?memberEmail=" + encodeURIComponent(mailValue);
+
+        } else {
+            alert("번호가 다릅니다.");
+        }
+    }
+
+    const emailCheck = () => {
+        const email = document.getElementById("memberEmail").value;
+        const checkResult = document.getElementById("check-result");
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        console.log("입력값: ", email);
+
+        if (!emailPattern.test(email)) {
+            console.log("이메일 형식이 올바르지 않습니다.");
+            checkResult.style.color = "red";
+            checkResult.innerHTML = "이메일 형식이 올바르지 않습니다.";
+            // 이메일 형식이 올바르지 않을 때 버튼 비활성화
+            sendBtn.disabled = true;
+            return;
+        }
+
+        $.ajax({ // jquery 에 있는 ajax 함수
+            // 요청방식: post, url: "email-check", 데이터: 이메일
+            type: "post",
+            url: "/member/email-check",
+            data: {
+                "memberEmail": email
+            },
+            success: function (res) {
+                console.log("요청성공", res);
+                if (res == "ok") {
+                    console.log("사용가능한 이메일");
+                    checkResult.style.color = "green";
+                    checkResult.innerHTML = "사용가능한 이메일";
+                    // 사용 가능한 이메일일 때 버튼 활성화
+                    sendBtn.disabled = false;
+                } else {
+                    console.log("이미 사용중인 이메일");
+                    checkResult.style.color = "red";
+                    checkResult.innerHTML = "이미 사용중인 이메일";
+                    // 사용 중인 이메일일 때 버튼 비활성화
+                    sendBtn.disabled = true;
+                }
+            },
+            error: function (err) {
+                console.log("에러발생", err);
+            }
+        });
+    }
+</script>
+<body>
+<div id="container">
+    <h2>일반 회원 이메일 인증</h2>
+    <div id="mail_input" name="mail_input">
+        <input type="text" name="memberEmail" id="memberEmail" onkeyup="emailCheck()" placeholder="이메일 입력">
+        <button type="button" id="sendBtn" name="sendBtn" onclick="sendNumber()" disabled>인증번호</button>
+        <p id="check-result"></p>
+    </div>
+    <br>
+    <div id="mail_number" name="mail_number" style="display: none">
+        <input type="text" name="number" id="number" placeholder="인증번호 입력">
+        <button type="button" name="confirmBtn" id="confirmBtn" onclick="confirmNumber()">이메일 인증</button>
+    </div>
+    <br>
+    <input type="text" id="Confirm" name="Confirm" style="display: none" value="">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    // Your existing JavaScript code here
+</script>
+</body>
+</html>
